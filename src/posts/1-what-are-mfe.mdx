@@ -10,9 +10,11 @@ Its an architecture that composes multiple semi-independent or fully independent
 
 This is similar to the micro-services backend architecture.
 
-## The motivation for micro services
+<hr />
+<br />
+## The movement towards micro services
 
-<div style={{ position: 'relative', height: '200px', margin: '16px' }}>
+<div style={{ position: 'relative', height: '200px', margin: '32px' }}>
   <Image
     src="/assets/monolithic-to-micro-services.png"
     alt="monolithic-to-micro-services.png"
@@ -21,12 +23,65 @@ This is similar to the micro-services backend architecture.
   />
 </div>
 
+As your project/application grows you might be motivated to split your code base into verticals.
+
+With micro services you get the following benefits:
+
+- Split your application into vertical pillars - you get to organise your teams vertically too
+- Isolation between applications
+- Framework/Technology agnostic
+
+<hr />
+<br />
+
+## What if we did the same on the frontend? - Micro frontends
+
+<div style={{ position: 'relative', height: '300px', margin: '32px' }}>
+  <Image
+    src="/assets/micro-frontend-1.png"
+    alt="monolithic-to-micro-services.png"
+    layout={'fill'}
+    objectFit={'contain'}
+  />
+</div>
+
+You get the same verticals on the frontend, with an aggregation/container layer.
+
+The aggregation layer decides how to render each of your frontend services on the DOM.
+
+<hr />
+<br />
+## Types of integrations
+
+#### Build-time integration
+
+- Container app has access to child app's code **before** it gets loaded in the browser
+- This happens when the source code compiles
+- Possible implementation: Publishing your child app on NPM Registry
+- Pro: Easy to setup
+- Con: Container has to be rebuilt and deployed everytime child changes
+
+#### Run-time integration
+
+- Container app gets access to child app's code **after** it gets loaded in the browser
+- Requests to child app's code are made on the browser
+- Pro 1: Independent build + deploy pipelines
+- Pro 2: you can always deploy different versions of child
+- Con: setup is abit more complicated
+
+#### Server-side integration
+
+- When a request for Container app's resource reaches the server, **decide on the server side** if child app should be loaded together
+- Requests to child app's code are made on server side
+
+For the rest of the sharing, we will be looking at Module Federation, which is one of the more performant solutions for **Run-time** integration right now.
+
 <br />
 <div className="page-menu-bottom">
-  <Link href="/" passHref>
-    <div className="menu-link"> {'< Back'}</div>
+  <Link href="/0-introduction" passHref>
+    <div className="menu-link"> {'< Intro'}</div>
   </Link>
-  <Link href="/" passHref>
-    <div className="menu-link">{'Benefits of Micro frontends >'}</div>
+  <Link href="/2-webpack-5-module-federation" passHref>
+    <div className="menu-link">{'Webpack 5 and Module Federation >'}</div>
   </Link>
 </div>
