@@ -1,5 +1,23 @@
 ---
-title: 7. Inter-app Communication
+title: 7. Inter-app Communication and Routing
 date: 'June 11, 2022'
 description: Frameapp to child app do you copy?
 ---
+
+With module federation, each of your apps run on the same javascript environment. You can share state across apps in ways similar to how you would do it in a monolithic app.
+
+Some examples include:
+
+1. Custom event handlers - set up your own event listeners with a publisher subscribe pattern
+2. Use a open source state management library - Libraries like Zustand help manage your app's global state
+3. React Context - For react apps you can also use the React Context API to do this
+
+## React Context example
+
+- Container app should expose the context as a remote
+
+## Routing
+
+React router 6 example with nested Routes
+
+Using an event handler to manage routing on a single history object
