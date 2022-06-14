@@ -6,11 +6,45 @@ description: Webpack and mod fed intro
 
 ## Webpack
 
-The most popular bundler for frontend applications (might not be the same in a few years time tho!)
+The most popular bundler for frontend applications. There are other up and coming bundlers like vite that we should look out for, but for now webpack seems to be go-to bundler for most applications.
 
+<div style={{ position: 'relative', height: '400px', margin: '32px' }}>
+  <Image
+    src="/assets/1636486663-module-bundler-comparison-graph.png"
+    alt="1636486663-module-bundler-comparison-graph.png"
+    layout={'fill'}
+    objectFit={'contain'}
+  />
+</div>
+
+Webpack's main job as a bundler is like most bundlers
+
+1. Create a dependency graph from a specified entry point (usually index.js) by traversing through its dependencies.
+2. Pack/Bundle your applications assets such that they can be processed by the browser. The dependency graph in step 1 is used to integrate multiple code files.
+
+<div style={{ position: 'relative', height: '300px', margin: '32px' }}>
+  <Image
+    src="/assets/Webpack-chunking-and-bundling-diagram.png"
+    alt="Webpack-chunking-and-bundling-diagram.pngg"
+    layout={'fill'}
+    objectFit={'contain'}
+  />
+</div>
 <hr />
 <br />
 
-## Module Federation
+## [Module Federation](https://webpack.js.org/concepts/module-federation/)
 
-A plugin in webpack 5
+Module federation is a plugin introduced with webpack 5, with the main purpose of allowing builds that are fully independent to be composed to form a single application.
+
+Some terminologies:
+
+- Shell/Container application: main application that will consume other remote modules. The main entry point for your application.
+- Child application: exposes remotes to other applications to consume in runtime
+
+[Use cases](https://webpack.js.org/guides/public-path/):
+
+- Composing a single SPA from multiple builds.
+  - You could also share common components in runtime, as opposed to build time
+  - Container app can defined shared modules to avoid code duplication
+- Building component libraries for consumption in run-time

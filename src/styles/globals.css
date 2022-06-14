@@ -20,6 +20,18 @@ a {
   text-decoration: none;
 }
 
+h2 > a:hover {
+  color: #b9cced;
+}
+
+li > a:hover {
+  color: #b9cced;
+}
+
+p > a:hover {
+  color: #b9cced;
+}
+
 * {
   box-sizing: border-box;
 }

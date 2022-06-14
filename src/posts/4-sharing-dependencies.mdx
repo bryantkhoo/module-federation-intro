@@ -6,9 +6,31 @@ description: Can we share dependencies in runtime?
 
 Once remoteEntry for child is loaded, if theres a dependency that exists in both apps, container can decide in runtime whether to load either one copy of the deps or both.
 
-What shared means in webpack config: Allows you to configure deps that you want to share
+**shared** config in webpack allows you to specify dependencies that should be shared across apps.
 
-## Using different versions of a certain dependency
+<SyntaxHighlighter language="javascript" className="syntax-highlighter">
+  {`
+    // example webpack.config.js
+    const deps = require("./package.json").dependencies;
+    module.exports = {
+    
+    // ...
+    shared: [
+        {
+          ...deps,
+          react: { singleton: true, eager: true },
+          "react-dom": { singleton: true, eager: true }
+        }
+      ]
+    }
+  `}
+</SyntaxHighlighter>
+
+## Example with different version of faker
+
+The below sandbox is an example app with both child and container having different versions of faker.
+
+Notice the network requests,
 
 <div className="iframe-container">
   <iframe

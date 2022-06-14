@@ -34,7 +34,6 @@ Basic Repo structure
 <br />
 ## Setting up the child container app with mod fed
 
-- Copy Container dir to Child dir
 - Mod fed plugin
   - Child app exposes App.jsx
   - Container app consumes App.jsx as remote
@@ -43,8 +42,10 @@ Basic Repo structure
   - Webpack config explanation:
     - name: name of current app, used by consumer if app exposes remote
     - filename: name of file that exposes list of remotes and how to load them
-    - remotes: LHS: module used when importing in consumer app (e.g. `import App from 'child/App'`), RHS: name field in child's webpack file @ protocol and url to fetch remote from
+    - [remotes](https://webpack.js.org/guides/public-path/): LHS: module used when importing in consumer app (e.g. `import App from 'child/App'`), RHS: name field in child's webpack file @ protocol and url to fetch remote from
     - shared: will be explained in next section
+    - [publicPath](https://webpack.js.org/guides/public-path/).:
+      - Base path for assets within the application: Its used by webpack to point code loaded to the browser to other files bundled by webpack
 
 <div className="iframe-container">
   <iframe
