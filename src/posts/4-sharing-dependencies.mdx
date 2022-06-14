@@ -4,9 +4,9 @@ date: 'June 11, 2022'
 description: Can we share dependencies in runtime?
 ---
 
-Once remoteEntry for child is loaded, if theres a dependency that exists in both apps, container can decide in runtime whether to load either one copy of the deps or both.
-
 **shared** config in webpack allows you to specify dependencies that should be shared across apps.
+
+Once remoteEntry for child is loaded, if theres a dependency that exists in both apps, container can decide in runtime whether to load either one copy of the deps or both.
 
 <SyntaxHighlighter language="javascript" className="syntax-highlighter">
   {`
@@ -29,8 +29,6 @@ Once remoteEntry for child is loaded, if theres a dependency that exists in both
 ## Example with different version of faker
 
 The below sandbox is an example app with both child and container having different versions of faker.
-
-Notice the network requests,
 
 <div className="iframe-container">
   <iframe
@@ -64,4 +62,13 @@ Notice the network requests,
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   />
+</div>
+
+<div className="page-menu-bottom">
+  <Link href="/3-basic-repo-setup" passHref>
+    <div className="menu-link"> {'< Basic Repo Setup'}</div>
+  </Link>
+  <Link href="/5-interapp-communication" passHref>
+    <div className="menu-link">{'Inter-app communication & Routing>'}</div>
+  </Link>
 </div>

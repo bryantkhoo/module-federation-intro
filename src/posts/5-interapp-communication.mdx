@@ -1,5 +1,5 @@
 ---
-title: 7. Inter-app Communication and Routing
+title: 5. Inter-app Communication and Routing
 date: 'June 11, 2022'
 description: Frameapp to child app do you copy?
 ---
@@ -8,13 +8,13 @@ With module federation, each of your apps run on the same javascript environment
 
 Some examples include:
 
-1. Custom event handlers - set up your own event listeners with a publisher subscribe pattern
-2. Use a open source state management library - Libraries like Zustand help manage your app's global state
-3. React Context - For react apps you can also use the React Context API to do this
+1. **Custom event handlers** - set up your own event listeners with a publisher subscribe pattern
+2. **Use a open source state management library** - Libraries like [**Zustand**](https://github.com/pmndrs/zustand) help manage your app's global state
+3. **React Context** - For react apps you can also use the [**React Context**](https://reactjs.org/docs/context.html) API to do this
 
 ## React Context example
 
-- Container app should expose the context as a remote
+In the following code example, the container app expose's its Context as a remote.
 
 <div className="iframe-container">
   <iframe
@@ -37,8 +37,6 @@ Some examples include:
 
 React router 6 example with nested Routes
 
-Using an event handler to manage routing on a single history object
-
 <div className="iframe-container">
   <iframe
     src="https://codesandbox.io/embed/mfe-intro-mod-fed-nested-routing-mod-fed-intro-k44prm?autoresize=1&expanddevtools=1&fontsize=14&module=%2Fcontainer%2FApp.jsx&theme=dark"
@@ -54,4 +52,33 @@ Using an event handler to manage routing on a single history object
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   />
   >
+</div>
+
+#### Some gotchas regarding routing:
+
+You might already what the following API does:
+
+- **History**: An object that you can use to get and set current path
+- **Router**: Allows you to render different content based on path
+  The following APIs are also commonly provided by routing libraries like React router, their implementation might vary depending on the library
+- [**Browser Router**](https://reactrouter.com/docs/en/v6/routers/browser-router): looks at path portion of url and lets you know what path user is on
+- [**Memory Router**](https://reactrouter.com/docs/en/v6/routers/memory-router): keep track of path in memory (does not use url in browser address bar)
+
+If you are either using <ins>more than 1 copies of Browser Router</ins>, there could be a very small chance for <ins>race conditions</ins> to occur because 2 copies of the same object might be trying to change the current path.
+
+Also, if your application requires a cross framework setup like a React Container with Angular/Vue Child app, you might end up with more than one kind of implementation of the browser router object.
+
+One solution to the above problem is to use a **Browser history instance in the container app, and child apps use Memory Router.**
+However this means that you probably will need to synchronise the paths in all Router implementations:
+
+- Child App needs to communicate to Container when route changes due to logic in child app, so that <ins>correct url shows on browser</ins>.
+- Container App needs to communicate to Child app when route changes due to logic in Container app, so that <ins>child app's router can react to the change</ins>.
+
+<div className="page-menu-bottom">
+  <Link href="/4-sharing-dependencies" passHref>
+    <div className="menu-link"> {'< Sharing Dependencies'}</div>
+  </Link>
+  <Link href="/6-microfrontend-gotchas" passHref>
+    <div className="menu-link">{'Gotchas >'}</div>
+  </Link>
 </div>

@@ -6,12 +6,11 @@ description: Walkthrough basic repo setup
 
 ## Setting up the demo container
 
-Basic Repo structure
+Basic Repo structure:
 
-- Lerna
-- container app
-- webpack file, babel-loader for react, htmlWebpackPlugin to load html as an entry point for our app
-- Simple App example
+- **lerna**: Tool to simply monorepo implementation on codesandbox.io
+- **container directory**: contains source code for our container application
+  - webpack file: contains very basic setup with just babel loader for React and HtmlWebpackPlugin (simplifies creation of index.html to serve your bundle)
 
 <div className="iframe-container">
   <iframe
@@ -32,7 +31,7 @@ Basic Repo structure
 
 <hr />
 <br />
-## Setting up the child container app with mod fed
+## Child App + Module Federation Plugin
 
 - Mod fed plugin
   - Child app exposes App.jsx
@@ -44,7 +43,7 @@ Basic Repo structure
     - filename: name of file that exposes list of remotes and how to load them
     - [remotes](https://webpack.js.org/guides/public-path/): LHS: module used when importing in consumer app (e.g. `import App from 'child/App'`), RHS: name field in child's webpack file @ protocol and url to fetch remote from
     - shared: will be explained in next section
-    - [publicPath](https://webpack.js.org/guides/public-path/).:
+    - [publicPath](https://webpack.js.org/guides/public-path/):
       - Base path for assets within the application: Its used by webpack to point code loaded to the browser to other files bundled by webpack
 
 <div className="iframe-container">
@@ -74,11 +73,20 @@ Sequence of events on the browser when you start up the app:
 2. bootstrap.js is loaded from container, theres a dependency there from child
 3. remoteEntry.js is loaded from child app, dependencies from remoteEntry of child app are loaded next (App.js)
 
-   <div style={{ position: 'relative', height: '300px', margin: '32px' }}>
-     <Image
-       src="/assets/bootstrap-entry.png"
-       alt="monolithic-to-micro-services.png"
-       layout={'fill'}
-       objectFit={'contain'}
-     />
-   </div>
+<div style={{ position: 'relative', height: '300px', margin: '32px' }}>
+  <Image
+    src="/assets/bootstrap-entry.png"
+    alt="monolithic-to-micro-services.png"
+    layout={'fill'}
+    objectFit={'contain'}
+  />
+</div>
+
+<div className="page-menu-bottom">
+  <Link href="/2-webpack-5-module-federation" passHref>
+    <div className="menu-link"> {'< Webpack 5 and Module Federation'}</div>
+  </Link>
+  <Link href="/4-sharing-dependencies" passHref>
+    <div className="menu-link">{'Sharing Dependencies >'}</div>
+  </Link>
+</div>
