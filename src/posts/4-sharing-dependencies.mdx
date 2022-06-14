@@ -1,5 +1,5 @@
 ---
-title: 6. Sharing Dependencies in run-time
+title: 4. Sharing Dependencies in run-time
 date: 'June 11, 2022'
 description: Can we share dependencies in runtime?
 ---
@@ -8,4 +8,38 @@ Once remoteEntry for child is loaded, if theres a dependency that exists in both
 
 What shared means in webpack config: Allows you to configure deps that you want to share
 
-## Demo for same and different versions of a certain dependency
+## Using different versions of a certain dependency
+
+<div className="iframe-container">
+  <iframe
+    src="https://codesandbox.io/embed/mfe-intro-mod-share-deps-mod-fed-intro-r371yc?autoresize=1&expanddevtools=1&fontsize=14&module=%2Fcontainer%2Fpackage.json&theme=dark"
+    style={{
+      width: '100%',
+      height: '600px',
+      border: '0',
+      borderRadius: '4px',
+      overflow: 'hidden',
+    }}
+    title="mfe-intro-mod-share-deps #mod-fed-intro"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  />
+</div>
+
+## Specifying shared dependencies
+
+<div className="iframe-container">
+  <iframe
+    src="https://codesandbox.io/embed/mfe-intro-mod-share-deps-2-mod-fed-intro-bm9lgp?autoresize=1&expanddevtools=1&fontsize=14&module=%2Fcontainer%2FApp.jsx&moduleview=1&theme=dark"
+    style={{
+      width: '100%',
+      height: '600px',
+      border: '0',
+      borderRadius: '4px',
+      overflow: 'hidden',
+    }}
+    title="mfe-intro-mod-share-deps #mod-fed-intro"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  />
+</div>
