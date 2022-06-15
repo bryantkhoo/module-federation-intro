@@ -6,6 +6,15 @@ description: Common pitfalls
 
 ## Some things to take note of:
 
-- CSS conflict
-- Interapp communication - tightly coupled apps, dont share your UI states if possible
-- Typescript - mod fed shares js in runtime, types that you need in on your local (compile time) dont exist in your consumed remote
+- **CSS conflicts** are possible across apps. Possible solutions
+  - Scoping your css class with prefixes
+  - CSS in js solutions, such as CSS Modules, Styled Components etc
+- **Interapp communication**, it might be tempting to tightly couple your apps
+  - dont share your UI states if possible
+- **Types** are lost in remotes. modole federation shares js in runtime, types that you need in on your local (compile time) dont exist in your consumed remote
+
+<hr />
+<br />
+### Thank you!
+
+Any questions?

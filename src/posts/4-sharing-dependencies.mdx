@@ -8,6 +8,9 @@ description: Can we share dependencies in runtime?
 
 Once remoteEntry for child is loaded, if theres a dependency that exists in both apps, container can decide in runtime whether to load either one copy of the deps or both.
 
+<br />
+Your shared config might look something like this:
+
 <SyntaxHighlighter language="javascript" className="syntax-highlighter">
   {`
     // example webpack.config.js
@@ -26,6 +29,33 @@ Once remoteEntry for child is loaded, if theres a dependency that exists in both
   `}
 </SyntaxHighlighter>
 
+<br />
+Webpack will share the default resolution point of your shared library, which is
+most likely index.js. If you want to capture any nested import paths, you can place
+a trailing slash at the end.
+
+<SyntaxHighlighter language="javascript" className="syntax-highlighter">
+  {`
+    shared: [
+        {
+          ...deps,
+          'someLib/': { singleton: true }
+        }
+      ]
+    }
+  `}
+</SyntaxHighlighter>
+
+<br />
+
+#### When to use singleton?
+
+For react users, if your library uses React context in any way, and the same context instance is expected to be shared across your remotes.
+
+#### When to use eager?
+
+The `eager` option front loads your shared module, which might result in unused dependencies being downloaded. (Increases your bundle size!!) Use this when necessary, on libraries that you will definitely use.
+
 ## Example with different version of faker
 
 The below sandbox is an example app with both child and container having different versions of faker.
@@ -33,17 +63,13 @@ The below sandbox is an example app with both child and container having differe
 <div className="iframe-container">
   <iframe
     src="https://codesandbox.io/embed/mfe-intro-mod-share-deps-mod-fed-intro-r371yc?autoresize=1&expanddevtools=1&fontsize=14&module=%2Fcontainer%2Fpackage.json&theme=dark"
-    style={{
-      width: '100%',
-      height: '600px',
-      border: '0',
-      borderRadius: '4px',
-      overflow: 'hidden',
-    }}
+    className="iframe-codesandbox"
     title="mfe-intro-mod-share-deps #mod-fed-intro"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  />
+
+/>
+
 </div>
 
 ## Specifying shared dependencies
@@ -51,13 +77,7 @@ The below sandbox is an example app with both child and container having differe
 <div className="iframe-container">
   <iframe
     src="https://codesandbox.io/embed/mfe-intro-mod-share-deps-2-mod-fed-intro-bm9lgp?autoresize=1&expanddevtools=1&fontsize=14&module=%2Fcontainer%2FApp.jsx&moduleview=1&theme=dark"
-    style={{
-      width: '100%',
-      height: '600px',
-      border: '0',
-      borderRadius: '4px',
-      overflow: 'hidden',
-    }}
+    className="iframe-codesandbox"
     title="mfe-intro-mod-share-deps #mod-fed-intro"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"

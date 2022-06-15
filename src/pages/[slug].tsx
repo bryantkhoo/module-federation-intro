@@ -18,7 +18,10 @@ const PostPage = ({ frontMatter, mdxSource }: PostPageProps) => {
   return (
     <div className="page-container">
       <div className="page-content">
-        <h1>{frontMatter.title}</h1>
+        <h1>
+          <Link href="/">{'<-   '}</Link>
+          {frontMatter.title}
+        </h1>
         <MDXRemote {...mdxSource} components={components}></MDXRemote>
       </div>
     </div>
