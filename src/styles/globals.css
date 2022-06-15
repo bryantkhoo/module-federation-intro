@@ -10,6 +10,11 @@ body {
   overflow: visible;
 }
 
+p,
+li,
+ul {
+  line-height: 32px;
+}
 hr {
   color: #cdc9c3;
   opacity: 0.5;
