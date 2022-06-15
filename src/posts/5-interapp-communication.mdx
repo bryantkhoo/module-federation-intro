@@ -52,12 +52,17 @@ You might already what the following API does:
 - [**Browser Router**](https://reactrouter.com/docs/en/v6/routers/browser-router): looks at path portion of url and lets you know what path user is on
 - [**Memory Router**](https://reactrouter.com/docs/en/v6/routers/memory-router): keep track of path in memory (does not use url in browser address bar)
 
-If you are either using <ins>more than 1 copies of Browser Router</ins>, there could be a very small chance for <ins>race conditions</ins> to occur because 2 copies of the same object might be trying to change the current path.
+<br />
+If you are either using <ins>more than 1 copies of Browser Router</ins>, there
+could be a very small chance for <ins>race conditions</ins> to occur because 2
+copies of the same object might be trying to change the current path.
 
 Also, if your application requires a cross framework setup like a React Container with Angular/Vue Child app, you might end up with more than one kind of implementation of the browser router object.
 
-One solution to the above problem is to use a **Browser history instance in the container app, and child apps use Memory Router.**
-However this means that you probably will need to synchronise the paths in all Router implementations:
+<br />
+One solution to the above problem is to use a **Browser history instance in the container
+app, and child apps use Memory Router.** However this means that you probably will
+need to synchronise the paths in all Router implementations:
 
 - Child App needs to communicate to Container when route changes due to logic in child app, so that <ins>correct url shows on browser</ins>.
 - Container App needs to communicate to Child app when route changes due to logic in Container app, so that <ins>child app's router can react to the change</ins>.
